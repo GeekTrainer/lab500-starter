@@ -1,0 +1,22 @@
+{
+  "name": "workshop-starter",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Starter scaffold: Copilot SDK + Hydra plumbing, ready for you to build on.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n web,server -c cyan,magenta \"npm run dev -w @workshop/web\" \"npm run dev -w @workshop/server\"",
+    "build": "npm run build -w @workshop/shared && npm run build -w @workshop/server && npm run build -w @workshop/web",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
