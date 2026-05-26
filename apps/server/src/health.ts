@@ -5,14 +5,21 @@ import { CopilotClient } from '@github/copilot-sdk';
 let cachedAuthState: HealthStatus['copilotAuth'] = 'unknown';
 
 async function probeCopilotAuth(): Promise<HealthStatus['copilotAuth']> {
-  // Lightweight probe: try to start the client; if it fails we assume unauthenticated.
+  // start() can succeed for an unauthenticated CLI; ask the SDK directly.
+  const client = new CopilotClient();
   try {
-    const client = new CopilotClient();
     await client.start();
-    await client.stop();
-    return 'authenticated';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const status = await (client as any).getAuthStatus?.();
+    return status?.isAuthenticated ? 'authenticated' : 'unauthenticated';
   } catch {
     return 'unauthenticated';
+  } finally {
+    try {
+      await client.stop();
+    } catch {
+      /* ignore */
+    }
   }
 }
 
