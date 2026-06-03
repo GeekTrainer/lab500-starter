@@ -1,7 +1,7 @@
 {
   "name": "lab500-workshop",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
-  "postCreateCommand": "npm install && npm install -g @github/copilot",
+  "postCreateCommand": "npm install && npm install -g @github/copilot && npx playwright install --with-deps chrome",
   "forwardPorts": [5173, 5174],
   "customizations": {
     "vscode": {
