@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n web,server -c cyan,magenta \"npm run dev -w @workshop/web\" \"npm run dev -w @workshop/server\"",
+    "dev": "npm run build -w @workshop/shared && concurrently -n shared,web,server -c yellow,cyan,magenta \"npm run dev -w @workshop/shared\" \"npm run dev -w @workshop/web\" \"npm run dev -w @workshop/server\"",
     "build": "npm run build -w @workshop/shared && npm run build -w @workshop/server && npm run build -w @workshop/web",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "doctor": "node scripts/doctor.mjs"
