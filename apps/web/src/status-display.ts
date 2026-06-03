@@ -23,7 +23,7 @@ export function mountStatusDisplay(container: HTMLElement): void {
     <section class="status-display">
       <header class="status-display__header">
         <h1>workshop starter</h1>
-        <p class="status-display__sub">Use the Copilot CLI in your terminal to drive this app.</p>
+        <p class="status-display__sub">Use the <strong>Copilot CLI</strong> in your terminal to build this app.</p>
       </header>
       <ul class="status-display__list" data-role="list"></ul>
     </section>
